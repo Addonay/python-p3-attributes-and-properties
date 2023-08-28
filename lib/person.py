@@ -16,4 +16,37 @@ APPROVED_JOBS = [
 ]
 
 class Person:
-    pass
+    def __init__(self, name="", job=""):
+        self._name = ""
+        self._job = ""
+        self.name = name
+        self.job = job
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        if not isinstance(value, str) or not (len(value) <= 25):
+            print("Name must be string under 25 characters.")
+        else:
+            self._name = value.title()
+
+    @property
+    def job(self):
+        return self._job
+
+    @job.setter
+    def job(self, value):
+        if value not in APPROVED_JOBS:
+            print("Job must be in list of approved jobs.")
+        else:
+            self._job = value
+
+if __name__ == "__main__":
+    person = Person()
+    person.name = "john doe"
+    person.job = "ITC"
+    print(f"Person's name: {person.name}")
+    print(f"Person's job: {person.job}")
